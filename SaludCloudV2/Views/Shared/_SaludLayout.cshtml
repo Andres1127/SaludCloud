@@ -1,0 +1,86 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Inicio - SaludCloud</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/css/style.css">
+   
+    <style type="text/css">
+        .Rectangulo {
+            width: 220px;
+            height: 110px;
+            background: #1996d8;
+            border-radius: 3px 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrapper d-flex align-items-stretch">
+        <nav id="sidebar">
+            <div class="custom-menu">
+                <button type="button" id="sidebarCollapse" class="btn btn-primary"></button>
+            </div>
+            <div class="img bg-wrap text-center py-4" style="background-image: url('../images/bg_1.jpg');">
+                <div class="user-logo">
+                    <div class="img" style="background-image: url('../images/logo1.jpg');"></div>
+
+                    <h3>@ViewBag.Nombre @ViewBag.Apellido</h3>
+                    <p>Medico General</p>
+                </div>
+            </div>
+            <ul class="list-unstyled components mb-5">
+                <li class="active">
+                    <a href="#"><span class="fa fa-home mr-3"></span> Inicio</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-medkit mr-3 notif"><small class="d-flex align-items-center justify-content-center">5</small></span> Citas</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-stethoscope mr-3"></span>Consultas</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-user-md mr-3"></span>Médicos</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-user mr-3"></span>Pacientes</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-bar-chart mr-3"></span>Reportes</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-cog mr-3"></span>Perfil</a>
+                </li>
+                <li>
+                    <a href="#"><span class="fa fa-sign-out mr-3"></span> Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Page Content  -->
+        @*<div id="content" class="p-4 p-md-5 pt-5">
+
+        </div>*@
+    </div>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/main.js"></script>
+
+    <div class="container body-content">
+        @RenderBody()
+        
+    </div>
+
+    
+</body>
+</html>
+
