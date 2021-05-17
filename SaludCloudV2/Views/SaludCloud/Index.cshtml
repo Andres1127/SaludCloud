@@ -43,7 +43,7 @@
                     <a href="#"><span class="fa fa-home mr-3"></span> Inicio</a>
                 </li>
                 <li>
-                    <a href="#"><span class="fa fa-medkit mr-3 notif"><small class="d-flex align-items-center justify-content-center">5</small></span> Citas</a>
+                    <a href="@Url.Action("Citas", "SaludCloud")"><span class="fa fa-medkit mr-3 notif"><small class="d-flex align-items-center justify-content-center">@ViewBag.cant</small></span> Citas</a>
                 </li>
                 <li>
                     <a href="#"><span class="fa fa-stethoscope mr-3"></span>Consultas</a>
@@ -98,7 +98,7 @@
                             @*<h4 class="card-title">Citas para hoy</h4>*@
                             <p class="card-text">
                                 Citas <i class="fa fa-medkit" aria-hidden="true"></i><br />
-                                Para hoy: 05
+                                Para hoy: @ViewBag.cant
                                 <hr />
 
                             </p>

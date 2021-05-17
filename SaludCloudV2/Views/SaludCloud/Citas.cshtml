@@ -32,6 +32,23 @@
 </head>
 <body>
 
+    <!--Section Script-->
+    <script>
+        $(document).ready(function () {
+            $("#Correo").hide();
+            $("#lbCorreo").hide();
+            $('#checkbox1').on('change', function () {
+                if (this.checked) {
+                    $("#Correo").show();
+                    $("#lbCorreo").show();
+                } else {
+                    $("#Correo").hide();
+                    $("#lbCorreo").hide();
+                }
+            })
+        });
+    </script>
+
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
             <div class="custom-menu">
@@ -74,13 +91,135 @@
         </nav>
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
-            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Large Modal</button>
-        </div>
+            <br />
+            <br />
+            @*<button type="button" class="btn btn-info btn-lg" style="background-color:#1996d8" data-toggle="modal" data-target="#myModal">&f067; Agregar Cita</button>*@
+            <div class=" row" style="text-align:right; padding:5px">
+                <div class="col-md-12">
+                    @*<input type="button" class="btn btn-primary" value="Nuevo" />*@
+                    <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                        <i class="fa fa-plus" style="padding-top: 3%;"></i>
+                        Nuevo
+                    </button>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                @*<th style="visibility:hidden">Id</th>*@
+                                <th>NOMBRE</th>
+                                <th>APELLIDO</th>
+                                <th>MOTIVO</th>
+                                <th>NOTA</th>
+                                <th>FECHA</th>
+                                <th>HORA</th>
+                                <th>MÉDICO</th>
+                                <th>CENTRE SALUD</th>
+                                <th>ESTADO</th>
+                                <th>OPCIONES</th>
+                                @*<th style="visibility:hidden">Estado Correo</th>*@
+                            </tr>
+                        </thead>
+                        @foreach (var list in Model)
+                        {
+                        <tr>
+                            @*<td style="visibility:hidden">@list.Id</td>*@
+                            @if (@list.Estatus == "Pendiente")
+                            {
+                                <td style="font-size: 13px;">@list.Nombre_Paciente</td>
+                                <td style="font-size: 13px;">@list.Apellido_Paciente</td>
+                                <td style="font-size: 13px;">@list.Motivo</td>
+                                <td style="font-size: 13px;">@list.Nota</td>
+                                <td style="font-size: 13px;">@list.Fecha</td>
+                                <td style="font-size: 13px;">@list.Hora</td>
+                                <td style="font-size: 13px;">@list.Medico</td>
+                                <td style="font-size: 13px;">@list.Centro_Salud</td>
+                                <td style="font-size: 13px;">@list.Estatus</td>
+                                @*<td style="visibility:hidden">@list.Estatus_Correo</td>*@
+                                <td>
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Opciones
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#" class="fa fa">&#xf069; Atendida</a></li>
+                                            <li><a href="#" class="fa fa">&#xf00d; Ausente</a></li>
+                                            <li><a href="#" class="fa fa">&#xf044; Editar</a></li>
+                                        </ul>
+                                    </div>
+
+                                </td>
+                            }
+                            else if (list.Estatus == "Atendida")
+                            {
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nombre_Paciente</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Apellido_Paciente</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Motivo</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nota</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Fecha</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Hora</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Medico</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Centro_Salud</td>
+                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Estatus</td>
+                                <td>
+
+                                    <select name="clinica" class="form-control" required>
+                                        <option selected style="text-align: center">Opciones</option>
+                                        <option>Opcion 1</option>
+                                        <option>Opcion 2</option>
+                                    </select>
+
+                                </td>
+                            }
+                            else if (list.Estatus == "Ausente")
+                            {
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Nombre_Paciente</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Apellido_Paciente</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Motivo</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Nota</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Fecha</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Hora</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Medico</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Centro_Salud</td>
+                                <td style="background-color:#ce1616; font-size: 13px;">@list.Estatus</td>
+                                <td>
+
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                            Opciones
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Atendida</a></li>
+                                            <li><a href="#">Ausente</a></li>
+                                            <li><a href="#">Pendiente</a></li>
+                                        </ul>
+                                    </div>
+
+                                </td>
+                            }
+
+                        </tr>
+                        }
+
+                    </table>
+
+
+                </div>
+                </div>
+
+
+                </div>
 
 
 
 
-        @*<script>
+                @*<script>
 
 
                 function Check() {
@@ -93,113 +232,111 @@
                     document.getElementById("mySidebar").style.display = "none";
                 }
             </script>*@
-    </div>
+            </div>
 
 
-    <!---MODAL CITAS--->
-    <div class="container">
-        <h2>Large Modal</h2>
-        <!-- Trigger the modal with a button -->
-        
+            <!---MODAL CITAS--->
+            <div class="container">
+                <h2>Large Modal</h2>
+                <!-- Trigger the modal with a button -->
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                                <h4 class="modal-title" style="float:left; color:black;">Agregar Cita</h4>
+                            </div>
+                            <div class="modal-body">
 
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title"></h4>
-                    </div>
-                    <div class="modal-body">
+                                <div class="col-xs-6">
+                                    <label for="ex1">Nombres</label>
+                                    <input class="form-control" name="nombres" type="text" autofocus required>
+                                </div>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Nombres</label>
-                            <input class="form-control" name="nombres" type="text" autofocus required>
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1">Apellido</label>
+                                    <input class="form-control" name="apellido" type="text" required>
+                                </div>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Apellido</label>
-                            <input class="form-control" name="apellido" type="text" required>
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1">Motivo</label>
+                                    <input class="form-control" name="Motivo" type="text" required>
+                                </div>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Motivo</label>
-                            <input class="form-control" name="Motivo" type="text" required>
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1">Nota</label>
+                                    <textarea class="form-control" name="Nota" type="text"></textarea>
+                                </div>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Nota</label>
-                            <textarea class="form-control" name="Nota" type="text"></textarea>
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1">Date</label>
+                                    <input class="form-control" type="date" value="--Seleccionar Fecha--" name="date" required>
+                                </div>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Date</label>
-                            <input class="form-control" type="date" value="--Seleccionar Fecha--" name="date" required>
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1">Hora</label>
+                                    <input class="form-control" type="time" value="--Seleccionar Hora--" name="hora" required>
+                                </div>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Hora</label>
-                            <input class="form-control" type="time" value="--Seleccionar Hora--" name="hora" required>
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1">Asignar Medico</label>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Asignar Medico</label>
+                                    <select name="medico" class="form-control" required>
+                                        <option>Opcion 1</option>
+                                    </select>
 
-                            <select name="medico" class="form-control" required>
-                                <option>Opcion 1</option>
-                            </select>
+                                </div>
 
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1">Asignar Clinica/H</label>
 
-                        <div class="col-xs-6">
-                            <label for="ex1">Asignar Clinica/H</label>
+                                    <select name="clinica" class="form-control" required>
+                                        <option selected style="text-align: center">--Asignar Clinica/H--</option>
+                                        <option>Opcion 1</option>
+                                        <option>Opcion 2</option>
+                                    </select>
 
-                            <select name="clinica" class="form-control" required>
-                                <option selected style="text-align: center">--Asignar Clinica/H--</option>
-                                <option>Opcion 1</option>
-                                <option>Opcion 2</option>
-                            </select>
+                                </div>
 
-                        </div>
+                                <div class="col-xs-6">
+                                    <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
+                                    <label class="form-check-label" for="exampleCheck1" onclick="Check()">&nbsp; &nbsp; Agregar Correo electronico?</label>
+                                </div>
 
-                        <div class="col-xs-6">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            <label class="form-check-label" for="exampleCheck1" onclick="Check()">&nbsp; &nbsp; Agregar Correo electronico?</label>
-                        </div>
-
-                        <div class="col-xs-6">
-                            <label for="ex1" hidden="hidden">Correo</label>
-                            <input class="form-control" name="Correo" id="Correo" type="text" required style="visibility:hidden">
-                        </div>
+                                <div class="col-xs-6">
+                                    <label for="ex1" id="lbCorreo" name="lbCorreo">Correo</label>
+                                    <input class="form-control" name="Correo" id="Correo" type="text" required>
+                                </div>
 
 
-                    </div>
-                    <div class="modal-footer">
-                        <div class="btn-toolbar" role="toolbar">
-                            <div class="btn-group" style="margin-bottom: 1%">
-                                <button type="submit" class="btn btn-success" value="Cancelar">
-                                    <span class="glyphicon glyphicon-floppy-disk"></span>Guardar
-                                </button>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="btn-toolbar" role="toolbar">
+                                    <div class="btn-group" style="margin-bottom: 1%">
+                                        <button type="submit" class="btn btn-success" value="Cancelar">
+                                            <span class="glyphicon glyphicon-floppy-disk"></span>Guardar
+                                        </button>
 
 
-                                <button type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
-                                    <span class="glyphicon glyphicon-arrow-left"></span>Regresar
-                                </button>
+                                        <button type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+                                            <span class="glyphicon glyphicon-arrow-left"></span>Regresar
+                                        </button>
+                                    </div>
+                                </div>
+                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
                             </div>
                         </div>
-                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
 
 
-    <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/popper.js"></script>
-    <script src="~/js/bootstrap.min.js"></script>
-    <script src="~/js/main.js"></script>
+            <script src="~/js/jquery.min.js"></script>
+            <script src="~/js/popper.js"></script>
+            <script src="~/js/bootstrap.min.js"></script>
+            <script src="~/js/main.js"></script>
 </body>
 </html>
 
