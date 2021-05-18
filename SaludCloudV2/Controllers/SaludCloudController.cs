@@ -36,6 +36,7 @@ namespace SaludCloudV2.Controllers
         {
             ViewBag.Nombre = Global.Nombre;
             ViewBag.Apellido = Global.Apellido;
+            ViewBag.alert = Global.alert;
             using (dbCitas db = new dbCitas())
             {
                 //var list = (from b in db.cita
@@ -68,9 +69,17 @@ namespace SaludCloudV2.Controllers
             return View();
         }
 
-        public ActionResult GuardarCita()
+        public ActionResult GuardarCita(string nombres, string apellidos, string Motivo, string Nota, string date, string hora, string medico, string clinica, string Correo )
         {
-            return View();
+            using (Conexion.GetConexion())
+            {
+                string query = " insert into cita(Nombre_Paciente, Apellido_Paciente, Motivo, Nota, Fecha, Hora, Medico, Centro_Salud, Estatus, Estatus_Correo, Correo) values ('"+nombres+ "','"+apellidos+"','"+Motivo+"','"+Nota+ "', '"+date+"','"+hora+ "', '"+medico+"', '"+clinica+ "', 'Pendiente', 'No', '"+Correo+"')";
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetConexion());
+                if (cmd.ExecuteNonQuery()>=1){
+                    Global.alert = "Send";
+                }
+            }
+            return RedirectToAction("Citas");
         }
     }
 }

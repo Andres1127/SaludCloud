@@ -46,6 +46,10 @@
                     $("#lbCorreo").hide();
                 }
             })
+            $('#klk').fadeIn();
+            setTimeout(function () {
+                $("#klk").fadeOut();
+            }, 2000);
         });
     </script>
 
@@ -91,6 +95,14 @@
         </nav>
         <!-- Page Content  -->
         <div id="content" class="p-4 p-md-5 pt-5">
+
+            @if (ViewBag.alert == "Send")
+            {
+                <div class="alert alert-info" id="klk">
+                    <center><strong>SaludCloud!</strong> Cita agendada correctamente.</center>
+                </div>
+            }
+
             <br />
             <br />
             @*<button type="button" class="btn btn-info btn-lg" style="background-color:#1996d8" data-toggle="modal" data-target="#myModal">&f067; Agregar Cita</button>*@
@@ -125,96 +137,96 @@
                         </thead>
                         @foreach (var list in Model)
                         {
-                        <tr>
-                            @*<td style="visibility:hidden">@list.Id</td>*@
-                            @if (@list.Estatus == "Pendiente")
-                            {
-                                <td style="font-size: 13px;">@list.Nombre_Paciente</td>
-                                <td style="font-size: 13px;">@list.Apellido_Paciente</td>
-                                <td style="font-size: 13px;">@list.Motivo</td>
-                                <td style="font-size: 13px;">@list.Nota</td>
-                                <td style="font-size: 13px;">@list.Fecha</td>
-                                <td style="font-size: 13px;">@list.Hora</td>
-                                <td style="font-size: 13px;">@list.Medico</td>
-                                <td style="font-size: 13px;">@list.Centro_Salud</td>
-                                <td style="font-size: 13px;">@list.Estatus</td>
-                                @*<td style="visibility:hidden">@list.Estatus_Correo</td>*@
-                                <td>
+                            <tr>
+                                @*<td style="visibility:hidden">@list.Id</td>*@
+                                @if (@list.Estatus == "Pendiente")
+                                {
+                                    <td style="font-size: 13px;">@list.Nombre_Paciente</td>
+                                    <td style="font-size: 13px;">@list.Apellido_Paciente</td>
+                                    <td style="font-size: 13px;">@list.Motivo</td>
+                                    <td style="font-size: 13px;">@list.Nota</td>
+                                    <td style="font-size: 13px;">@list.Fecha</td>
+                                    <td style="font-size: 13px;">@list.Hora</td>
+                                    <td style="font-size: 13px;">@list.Medico</td>
+                                    <td style="font-size: 13px;">@list.Centro_Salud</td>
+                                    <td style="font-size: 13px;">@list.Estatus</td>
+                                    @*<td style="visibility:hidden">@list.Estatus_Correo</td>*@
+                                    <td>
 
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                            Opciones
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#" class="fa fa">&#xf069; Atendida</a></li>
-                                            <li><a href="#" class="fa fa">&#xf00d; Ausente</a></li>
-                                            <li><a href="#" class="fa fa">&#xf044; Editar</a></li>
-                                        </ul>
-                                    </div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                Opciones
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#" class="fa fa">&#xf069; Atendida</a></li>
+                                                <li><a href="#" class="fa fa">&#xf00d; Ausente</a></li>
+                                                <li><a href="#" class="fa fa">&#xf044; Editar</a></li>
+                                            </ul>
+                                        </div>
 
-                                </td>
-                            }
-                            else if (list.Estatus == "Atendida")
-                            {
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nombre_Paciente</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Apellido_Paciente</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Motivo</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nota</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Fecha</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Hora</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Medico</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Centro_Salud</td>
-                                <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Estatus</td>
-                                <td>
+                                    </td>
+                                }
+                                else if (list.Estatus == "Atendida")
+                                {
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nombre_Paciente</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Apellido_Paciente</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Motivo</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nota</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Fecha</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Hora</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Medico</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Centro_Salud</td>
+                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Estatus</td>
+                                    <td>
 
-                                    <select name="clinica" class="form-control" required>
-                                        <option selected style="text-align: center">Opciones</option>
-                                        <option>Opcion 1</option>
-                                        <option>Opcion 2</option>
-                                    </select>
+                                        <select name="clinica" class="form-control" required>
+                                            <option selected style="text-align: center">Opciones</option>
+                                            <option>Opcion 1</option>
+                                            <option>Opcion 2</option>
+                                        </select>
 
-                                </td>
-                            }
-                            else if (list.Estatus == "Ausente")
-                            {
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Nombre_Paciente</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Apellido_Paciente</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Motivo</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Nota</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Fecha</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Hora</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Medico</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Centro_Salud</td>
-                                <td style="background-color:#ce1616; font-size: 13px;">@list.Estatus</td>
-                                <td>
+                                    </td>
+                                }
+                                else if (list.Estatus == "Ausente")
+                                {
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Nombre_Paciente</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Apellido_Paciente</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Motivo</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Nota</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Fecha</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Hora</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Medico</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Centro_Salud</td>
+                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Estatus</td>
+                                    <td>
 
-                                    <div class="dropdown">
-                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                            Opciones
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li><a href="#">Atendida</a></li>
-                                            <li><a href="#">Ausente</a></li>
-                                            <li><a href="#">Pendiente</a></li>
-                                        </ul>
-                                    </div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                                Opciones
+                                                <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="#">Atendida</a></li>
+                                                <li><a href="#">Ausente</a></li>
+                                                <li><a href="#">Pendiente</a></li>
+                                            </ul>
+                                        </div>
 
-                                </td>
-                            }
+                                    </td>
+                                }
 
-                        </tr>
+                            </tr>
                         }
 
                     </table>
 
 
                 </div>
-                </div>
+            </div>
 
 
-                </div>
+        </div>
 
 
 
@@ -236,100 +248,103 @@
 
 
             <!---MODAL CITAS--->
-            <div class="container">
-                <h2>Large Modal</h2>
-                <!-- Trigger the modal with a button -->
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" role="dialog">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
-                                <h4 class="modal-title" style="float:left; color:black;">Agregar Cita</h4>
+    <div class="container">
+        <h2>Large Modal</h2>
+        <!-- Trigger the modal with a button -->
+        <!-- Modal -->
+        <form class="login100-form validate-form" method="post" action="@Url.Action("GuardarCita", "SaludCloud")">
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
+                            <h4 class="modal-title" style="float:left; color:black;">Agregar Cita</h4>
+                        </div>
+
+                        <div class="modal-body">
+
+                            <div class="col-xs-6">
+                                <label for="ex1">Nombres</label>
+                                <input class="form-control" name="nombres" type="text" autofocus required>
                             </div>
-                            <div class="modal-body">
 
-                                <div class="col-xs-6">
-                                    <label for="ex1">Nombres</label>
-                                    <input class="form-control" name="nombres" type="text" autofocus required>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="ex1">Apellido</label>
+                                <input class="form-control" name="apellidos" type="text" required>
+                            </div>
 
-                                <div class="col-xs-6">
-                                    <label for="ex1">Apellido</label>
-                                    <input class="form-control" name="apellido" type="text" required>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="ex1">Motivo</label>
+                                <input class="form-control" name="Motivo" type="text" required>
+                            </div>
 
-                                <div class="col-xs-6">
-                                    <label for="ex1">Motivo</label>
-                                    <input class="form-control" name="Motivo" type="text" required>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="ex1">Nota</label>
+                                <textarea class="form-control" name="Nota" type="text"></textarea>
+                            </div>
 
-                                <div class="col-xs-6">
-                                    <label for="ex1">Nota</label>
-                                    <textarea class="form-control" name="Nota" type="text"></textarea>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="ex1">Date</label>
+                                <input class="form-control" type="date" value="--Seleccionar Fecha--" name="date" required>
+                            </div>
 
-                                <div class="col-xs-6">
-                                    <label for="ex1">Date</label>
-                                    <input class="form-control" type="date" value="--Seleccionar Fecha--" name="date" required>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="ex1">Hora</label>
+                                <input class="form-control" type="time" value="--Seleccionar Hora--" name="hora" required>
+                            </div>
 
-                                <div class="col-xs-6">
-                                    <label for="ex1">Hora</label>
-                                    <input class="form-control" type="time" value="--Seleccionar Hora--" name="hora" required>
-                                </div>
+                            <div class="col-xs-6">
+                                <label for="ex1">Asignar Medico</label>
 
-                                <div class="col-xs-6">
-                                    <label for="ex1">Asignar Medico</label>
-
-                                    <select name="medico" class="form-control" required>
-                                        <option>Opcion 1</option>
-                                    </select>
-
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <label for="ex1">Asignar Clinica/H</label>
-
-                                    <select name="clinica" class="form-control" required>
-                                        <option selected style="text-align: center">--Asignar Clinica/H--</option>
-                                        <option>Opcion 1</option>
-                                        <option>Opcion 2</option>
-                                    </select>
-
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
-                                    <label class="form-check-label" for="exampleCheck1" onclick="Check()">&nbsp; &nbsp; Agregar Correo electronico?</label>
-                                </div>
-
-                                <div class="col-xs-6">
-                                    <label for="ex1" id="lbCorreo" name="lbCorreo">Correo</label>
-                                    <input class="form-control" name="Correo" id="Correo" type="text" required>
-                                </div>
-
+                                <select name="medico" class="form-control" required>
+                                    <option>Opcion 1</option>
+                                </select>
 
                             </div>
-                            <div class="modal-footer">
-                                <div class="btn-toolbar" role="toolbar">
-                                    <div class="btn-group" style="margin-bottom: 1%">
-                                        <button type="submit" class="btn btn-success" value="Cancelar">
-                                            <span class="glyphicon glyphicon-floppy-disk"></span>Guardar
-                                        </button>
 
+                            <div class="col-xs-6">
+                                <label for="ex1">Asignar Clinica/H</label>
 
-                                        <button type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
-                                            <span class="glyphicon glyphicon-arrow-left"></span>Regresar
-                                        </button>
-                                    </div>
-                                </div>
-                                @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                                <select name="clinica" class="form-control" required>
+                                    <option selected style="text-align: center">--Asignar Clinica/H--</option>
+                                    <option>Opcion 1</option>
+                                    <option>Opcion 2</option>
+                                </select>
+
                             </div>
+
+                            <div class="col-xs-6">
+                                <input type="checkbox" class="form-check-input" id="checkbox1" name="checkbox1">
+                                <label class="form-check-label" for="exampleCheck1" onclick="Check()">&nbsp; &nbsp; Agregar Correo electronico?</label>
+                            </div>
+
+                            <div class="col-xs-6">
+                                <label for="ex1" id="lbCorreo" name="lbCorreo">Correo</label>
+                                <input class="form-control" name="Correo" id="Correo" type="text" required>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group" style="margin-bottom: 1%">
+                                    <button type="submit" class="btn btn-success" value="Cancelar">
+                                        <span class="glyphicon glyphicon-floppy-disk"></span>Guardar
+                                    </button>
+
+
+                                    <button type="submit" class="btn btn-danger" data-dismiss="modal" value="Cancelar">
+                                        <span class="glyphicon glyphicon-arrow-left"></span>Regresar
+                                    </button>
+                                </div>
+                            </div>
+                            @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
+</div>
 
 
 
