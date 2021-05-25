@@ -13,5 +13,6 @@ namespace SaludCloudV2.Models
         static internal string Apellido;
         static internal string TipoMedico;
         static internal string CantCitas;
+        static internal string datosCitas;
     }
 }

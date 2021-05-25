@@ -32,11 +32,14 @@ namespace SaludCloudV2.Controllers
 
             return View();
         }
+
+        ///----Modulo de Citas---
         public ActionResult Citas()
         {
             ViewBag.Nombre = Global.Nombre;
             ViewBag.Apellido = Global.Apellido;
             ViewBag.alert = Global.alert;
+            ViewBag.Datos = Global.datosCitas;
             using (dbCitas db = new dbCitas())
             {
                 //var list = (from b in db.cita
@@ -64,6 +67,8 @@ namespace SaludCloudV2.Controllers
            // return View();
         }
 
+        
+
         public ActionResult ActualizarCita()
         {
             return View();
@@ -81,5 +86,43 @@ namespace SaludCloudV2.Controllers
             }
             return RedirectToAction("Citas");
         }
+
+        public ActionResult RecuperarCita(int id)
+        {
+            using (Conexion.GetConexion())
+            {
+                string query = "SELECT * FROM Citas where Id = '"+id+"'";
+                SqlCommand cmd = new SqlCommand(query, Conexion.GetConexion());
+                SqlDataReader leer = cmd.ExecuteReader();
+
+                if (leer.Read())
+                {
+                    ViewBag.Nombre = leer["Nombre_Paciente"].ToString();
+
+                    Global.datosCitas = "Si";
+                }
+            }
+            return RedirectToAction("Citas");
+        }
+
+        public ActionResult EditarCita(string nombres, string apellidos, string Motivo, string Nota, string date, string hora, string medico, string clinica, string Correo, int id, string Opciones)
+        {
+            using (Conexion.GetConexion())
+            {
+                string sqlquery = "update Citas set Nombre_Paciente = '" + nombres + "', Apellido_Paciente = '"+apellidos+"', Motivo = '"+Motivo+"', Fecha = '"+date+"', Hora = '"+hora+"', Fk_Medico = '"+medico+"', Centro_Salud = '"+clinica+"', Correo = '"+Correo+"' where Id = '"+id+"'";
+                SqlCommand cmd = new SqlCommand(sqlquery, Conexion.GetConexion());
+                cmd.ExecuteNonQuery();
+            }
+            return View();
+        }
+
+        ///Modulo de consultas--------------------
+        
+        public ActionResult Consulta()
+        {
+            return View();
+        }
+
+
     }
 }

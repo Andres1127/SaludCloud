@@ -21,6 +21,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 
+
     <style type="text/css">
         .Rectangulo {
             width: 220px;
@@ -37,6 +38,7 @@
         $(document).ready(function () {
             $("#Correo").hide();
             $("#lbCorreo").hide();
+
             $('#checkbox1').on('change', function () {
                 if (this.checked) {
                     $("#Correo").show();
@@ -45,13 +47,26 @@
                     $("#Correo").hide();
                     $("#lbCorreo").hide();
                 }
+
             })
             $('#klk').fadeIn();
             setTimeout(function () {
                 $("#klk").fadeOut();
             }, 2000);
         });
+
     </script>
+
+    @*@if (ViewBag.Datos == "Si")
+        {*@
+
+    @*<script>
+        function modal() {
+            $("#myModal").modal("show");
+            $("#btnGuardar").hide();
+        }
+    </script>*@
+    @*}*@
 
     <div class="wrapper d-flex align-items-stretch">
         <nav id="sidebar">
@@ -105,6 +120,7 @@
 
             <br />
             <br />
+            <input type="button" onclick="modal()" value="Modal" />
             @*<button type="button" class="btn btn-info btn-lg" style="background-color:#1996d8" data-toggle="modal" data-target="#myModal">&f067; Agregar Cita</button>*@
             <div class=" row" style="text-align:right; padding:5px">
                 <div class="col-md-12">
@@ -139,82 +155,46 @@
                         {
                             <tr>
                                 @*<td style="visibility:hidden">@list.Id</td>*@
-                                @if (@list.Estatus == "Pendiente")
-                                {
-                                    <td style="font-size: 13px;">@list.Nombre_Paciente</td>
-                                    <td style="font-size: 13px;">@list.Apellido_Paciente</td>
-                                    <td style="font-size: 13px;">@list.Motivo</td>
-                                    <td style="font-size: 13px;">@list.Nota</td>
-                                    <td style="font-size: 13px;">@list.Fecha</td>
-                                    <td style="font-size: 13px;">@list.Hora</td>
-                                    <td style="font-size: 13px;">@list.Medico</td>
-                                    <td style="font-size: 13px;">@list.Centro_Salud</td>
-                                    <td style="font-size: 13px;">@list.Estatus</td>
-                                    @*<td style="visibility:hidden">@list.Estatus_Correo</td>*@
-                                    <td>
 
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                Opciones
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#" class="fa fa">&#xf069; Atendida</a></li>
-                                                <li><a href="#" class="fa fa">&#xf00d; Ausente</a></li>
-                                                <li><a href="#" class="fa fa">&#xf044; Editar</a></li>
-                                            </ul>
-                                        </div>
+                                <td style="font-size: 13px;">@list.Nombre_Paciente</td>
+                                <td style="font-size: 13px;">@list.Apellido_Paciente</td>
+                                <td style="font-size: 13px;">@list.Motivo</td>
+                                <td style="font-size: 13px;">@list.Nota</td>
+                                <td style="font-size: 13px;">@list.Fecha</td>
+                                <td style="font-size: 13px;">@list.Hora</td>
+                                <td style="font-size: 13px;">@list.Medico</td>
+                                <td style="font-size: 13px;">@list.Centro_Salud</td>
+                                <td>
+                                    @if (@list.Estatus == "Pendiente")
+                                    {
+                                        <span class="tdstyle" style="color:white; background: #f39c12; border-radius:2px;"> @list.Estatus</span>
+                                    }
+                                    else if (list.Estatus == "Atendida")
+                                    {
+                                        <span class="label label-warning" style="color:white; background: #00a65a; border-radius:2px; width:20%"> @list.Estatus &nbsp;</span>
+                                    }
+                                    else if (list.Estatus == "Ausente")
+                                    {
+                                        <span class="label label-warning" style="color:white; background:#d22121; border-radius:2px; width:20%"> @list.Estatus&nbsp;&nbsp;&nbsp;</span>
+                                    }
+                                </td>
 
-                                    </td>
-                                }
-                                else if (list.Estatus == "Atendida")
-                                {
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nombre_Paciente</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Apellido_Paciente</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Motivo</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Nota</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Fecha</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Hora</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Medico</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Centro_Salud</td>
-                                    <td style="background-color:mediumspringgreen; font-size: 13px;">@list.Estatus</td>
-                                    <td>
+                                @*<td style="visibility:hidden">@list.Estatus_Correo</td>*@
+                                <td>
 
-                                        <select name="clinica" class="form-control" required>
-                                            <option selected style="text-align: center">Opciones</option>
-                                            <option>Opcion 1</option>
-                                            <option>Opcion 2</option>
-                                        </select>
+                                    <div class="dropdown" name="Opciones">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" name="Opciones">
+                                            Opciones
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="@Url.Content("~/SaludCloud/EditarCita/" +list.Id)" class="fa fa">&#xf069; Atendida</a></li>
+                                            <li><a href="#" class="fa fa">&#xf00d; Ausente</a></li>
+                                            <li><a href="@Url.Content("~/SaludCloud/RecuperarCita/" +list.Id)" class="fa fa" data-target="#myModal">&#xf044; Editar</a></li>
+                                        </ul>
+                                    </div>
 
-                                    </td>
-                                }
-                                else if (list.Estatus == "Ausente")
-                                {
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Nombre_Paciente</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Apellido_Paciente</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Motivo</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Nota</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Fecha</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Hora</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Medico</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Centro_Salud</td>
-                                    <td style="background-color:#ce1616; font-size: 13px;">@list.Estatus</td>
-                                    <td>
-
-                                        <div class="dropdown">
-                                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                                Opciones
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="#">Atendida</a></li>
-                                                <li><a href="#">Ausente</a></li>
-                                                <li><a href="#">Pendiente</a></li>
-                                            </ul>
-                                        </div>
-
-                                    </td>
-                                }
+                                </td>
 
                             </tr>
                         }
@@ -231,23 +211,11 @@
 
 
 
-                @*<script>
+
+    </div>
 
 
-                function Check() {
-                    if (document.getElementById("Correo").checked = true) {
-                        document.getElementById("Correo").style.visibility = "block";
-                    }
-                }
-
-                function w3_close() {
-                    document.getElementById("mySidebar").style.display = "none";
-                }
-            </script>*@
-            </div>
-
-
-            <!---MODAL CITAS--->
+    <!---MODAL CITAS--->
     <div class="container">
         <h2>Large Modal</h2>
         <!-- Trigger the modal with a button -->
@@ -265,13 +233,14 @@
 
                             <div class="col-xs-6">
                                 <label for="ex1">Nombres</label>
-                                <input class="form-control" name="nombres" type="text" autofocus required>
+                                <input class="form-control" name="nombres" type="text" value="@ViewBag.Nombre" autofocus required>
                             </div>
 
                             <div class="col-xs-6">
                                 <label for="ex1">Apellido</label>
                                 <input class="form-control" name="apellidos" type="text" required>
                             </div>
+
 
                             <div class="col-xs-6">
                                 <label for="ex1">Motivo</label>
@@ -328,7 +297,7 @@
                         <div class="modal-footer">
                             <div class="btn-toolbar" role="toolbar">
                                 <div class="btn-group" style="margin-bottom: 1%">
-                                    <button type="submit" class="btn btn-success" value="Cancelar">
+                                    <button type="submit" class="btn btn-success" name="btnGuardar" id="btnGuardar" value="Cancelar">
                                         <span class="glyphicon glyphicon-floppy-disk"></span>Guardar
                                     </button>
 
@@ -343,15 +312,24 @@
                     </div>
                 </div>
             </div>
-            </form>
-</div>
+        </form>
+    </div>
 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" type="text/javascript"></script>
+    @if(ViewBag.Datos == "Si")
+    {
 
+    <script type="text/javascript">
+        $(function () {
+            $("#myModal").modal("show");
+        });
+    </script>
+    }
 
-            <script src="~/js/jquery.min.js"></script>
-            <script src="~/js/popper.js"></script>
-            <script src="~/js/bootstrap.min.js"></script>
-            <script src="~/js/main.js"></script>
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/popper.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/main.js"></script>
 </body>
 </html>
 
